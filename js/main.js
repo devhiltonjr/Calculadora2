@@ -4,7 +4,16 @@ function criaCalculadora() {
         btnClean: document.querySelector('.btnClean'),
         inicia() {
             this.cliqueBotoes(); 
+             this.pressionarEnter();
            },
+        pressionarEnter() {
+            this.display.addEventListener('keypress',e =>{
+             if(e.keyCode === 13) {  
+             this.realizaConta(); 
+             }  
+            })
+        },
+        
 
            realizaConta(){
             let conta = this.display.value;
