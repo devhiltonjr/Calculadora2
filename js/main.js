@@ -3,9 +3,9 @@ function criaCalculadora() {
         display: document.querySelector('.display'),
         btnClean: document.querySelector('.btnClean'),
         inicia() {
-            this.cliqueBotoes(); 
-             this.pressionarEnter();
-           },
+            this.cliqueBotoes();
+            this.pressionarEnter();
+        },
         pressionarEnter() {
             this.display.addEventListener('keypress',e =>{
              if(e.keyCode === 13) {  
@@ -13,52 +13,50 @@ function criaCalculadora() {
              }  
             })
         },
-        
-
-           realizaConta(){
+        realizaConta() {
             let conta = this.display.value;
 
-            try{
+            try {
                 conta = eval(conta);
-                if(!conta){
+                if (!conta) {
                     alert('Conta invalida');
                     return;
                 }
-                this.display.value = String( conta);
+                this.display.value = String(conta);
             }
-            catch(e){
-            alert('Conta Invalida');
-            return;
+            catch (e) {
+                alert('Conta Invalida');
+                return;
             }
-           },
-        cleanDisplay(){
+        },
+        cleanDisplay() {
             this.display.value = " ";
         },
-        apagaUm(){                               //faz apagar apenas o ultimo dig
+        apagaUm() {                               //faz apagar apenas o ultimo dig
             this.display.value = this.display.value.slice(0, -1);
         },
-  
-        cliqueBotoes(){
+
+        cliqueBotoes() {
             // this -> calculadora
-         document.addEventListener('click', function(e){
-const el = e.target;
-console.log(this)
-           if(el.classList.contains('btn-num')){
-            this.btnParaDisplay(el.innerText);
-           }
+            document.addEventListener('click', function (e) {
+                const el = e.target;
+                console.log(this)
+                if (el.classList.contains('btn-num')) {
+                    this.btnParaDisplay(el.innerText);
+                }
 
-           if(el.classList.contains('btn-clean')){
-            this.cleanDisplay();
-           }
+                if (el.classList.contains('btn-clean')) {
+                    this.cleanDisplay();
+                }
 
-           if(el.classList.contains('btn-del')){
-            this.apagaUm();
-           };
+                if (el.classList.contains('btn-del')) {
+                    this.apagaUm();
+                };
 
-           if(el.classList.contains('btn-eq')){
-            this.realizaConta();
-           };
-         }.bind(this));
+                if (el.classList.contains('btn-eq')) {
+                    this.realizaConta();
+                };
+            }.bind(this));
         },
         btnParaDisplay(valor) {
             this.display.value += valor;
